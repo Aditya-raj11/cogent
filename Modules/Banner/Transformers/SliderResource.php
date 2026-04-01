@@ -67,8 +67,8 @@ class SliderResource extends JsonResource
                     $video = $video->where('is_restricted',0);
 
                    $video = $video->where('id',$this->type_id)->first();
-                   $video->user_id = $this->user_id ?? null;
                 if ($video) {
+                    $video->user_id = $this->user_id ?? null;
                     $data = new VideoResource($video);
                 }
                 break;
