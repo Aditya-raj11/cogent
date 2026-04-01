@@ -270,7 +270,7 @@ class EntertainmentViewsTableSeeder extends Seeder
     private function getRandomDate($year)
     {
         $month = rand(1, 12);
-        $day = rand(1, cal_days_in_month(CAL_GREGORIAN, $month, $year));
+        $day = rand(1, Carbon::create($year, $month)->daysInMonth);
         return Carbon::createFromDate($year, $month, $day)->format('Y-m-d H:i:s');
     }
 }
