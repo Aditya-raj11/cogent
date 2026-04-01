@@ -105,7 +105,7 @@ class BannerDatabaseSeeder extends Seeder
             if ($banner['type'] == 'movie' || $banner['type'] == 'tvshow') {
                 $typeId = \DB::table('entertainments')->where('name', $banner['type_name'])->value('id');
             } elseif ($banner['type'] == 'video') {
-                $typeId = \DB::table('videos')->where('title', $banner['type_name'])->value('id');
+                $typeId = \DB::table('videos')->where('name', $banner['type_name'])->value('id');
             }
 
             \DB::table('banners')->insert([
