@@ -43,16 +43,20 @@ Route::get('storage-link', function () {
 });
 
 Route::get('migrate-seed', function () {
-    // Clear the config cache
-    Artisan::call('config:clear');
-    
-    // Run fresh migrations and seed the database
-    Artisan::call('migrate:fresh', [
-        '--seed' => true,
-        '--force' => true, // Avoids confirmation prompt
-    ]);
+    try {
+        // Clear the config cache
+        \Illuminate\Support\Facades\Artisan::call('config:clear');
+        
+        // Run fresh migrations and seed the database
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh', [
+            '--seed' => true,
+            '--force' => true, // Avoids confirmation prompt
+        ]);
 
-    return 'Database migrated fresh with seed and config cleared!';
+        return 'Database migrated fresh with seed and config cleared!';
+    } catch (\Throwable $e) {
+        return '<b>Error:</b> ' . $e->getMessage() . '<br><br><b>Stack Trace:</b><br><pre>' . $e->getTraceAsString() . '</pre>';
+    }
 });
 
 Route::get('/', [FrontendController::class, 'index'])->name('user.login');
