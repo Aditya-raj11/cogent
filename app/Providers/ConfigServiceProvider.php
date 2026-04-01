@@ -71,7 +71,7 @@ class ConfigServiceProvider extends ServiceProvider
                     }
                 }
             }
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
         }
     }
 

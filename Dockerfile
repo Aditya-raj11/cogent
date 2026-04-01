@@ -28,7 +28,7 @@ COPY . /app
 
 # Set production environment for build process
 ENV APP_ENV=production
-ENV APP_DEBUG=false
+ENV APP_DEBUG=true
 
 # Install dependencies
 RUN composer install --no-interaction --no-dev --optimize-autoloader

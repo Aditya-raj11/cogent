@@ -36,7 +36,7 @@ class CheckInstallation
                 return redirect()->route('install.index');
 
             }
-        } catch (QueryException $e) {
+        } catch (\Throwable $e) {
             if (str_contains($e->getMessage(), 'Access denied for user')) {
 
                 return redirect()->route('install.index');
