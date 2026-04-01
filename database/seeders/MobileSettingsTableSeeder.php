@@ -189,8 +189,8 @@ class MobileSettingsTableSeeder extends Seeder
         $tvShowIds = \DB::table('entertainments')->where('type', 'tvshow')->pluck('id')->toArray();
         $videoIds = \DB::table('videos')->pluck('id')->toArray();
         $genreIds = \DB::table('genres')->pluck('id')->toArray();
-        $castIds = \DB::table('cast_crews')->pluck('id')->toArray();
-        $channelIds = \DB::table('live_tv_channels')->pluck('id')->toArray();
+        $castIds = \DB::table('cast_crew')->pluck('id')->toArray();
+        $channelIds = \DB::table('live_tv_channel')->pluck('id')->toArray();
         $languageIds = \DB::table('constants')->where('type', 'movie_language')->pluck('id')->toArray();
 
         \DB::table('mobile_settings')->insert(array (
