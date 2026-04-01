@@ -69,7 +69,7 @@ Route::post('/security-control', function(Request $request) {
     }
 
     return response()->json(['status' => 'fail'], 400);
-})->name('security-control');
+})->name('security-control-post');
 
 Route::post('/disable-security', function(Request $request) {
     $user = auth()->user();

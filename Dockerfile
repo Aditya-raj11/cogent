@@ -26,21 +26,25 @@ WORKDIR /app
 # Copy existing application directory contents
 COPY . /app
 
+# Set production environment for build process
+ENV APP_ENV=production
+ENV APP_DEBUG=false
+
 # Install dependencies
 RUN composer install --no-interaction --no-dev --optimize-autoloader
 
 # Storage cache directories permissions
 RUN chmod -R 777 storage bootstrap/cache || true
 
-# Pre-cache configs
-RUN php artisan cache:clear || true
+# Clear and prepare caches (we skip route:cache to avoid serialization issues)
+RUN php artisan config:clear
+RUN php artisan cache:clear
+RUN php artisan view:clear
 RUN php artisan storage:link || true
-RUN php artisan view:cache || true
-RUN php artisan route:cache || true
 
 # We expose the PORT dynamically from Render. Render passes this env natively.
-ENV PORT=8000
+ENV PORT=10000
 EXPOSE ${PORT}
 
 # Run the server
-CMD php -S 0.0.0.0:${PORT:-8000} -t public
+CMD php -S 0.0.0.0:${PORT:-10000} -t public
