@@ -1075,7 +1075,7 @@ function dbConnectionStatus(): bool
     try {
         DB::connection()->getPdo();
         return true;
-    } catch (Exception $e) {
+    } catch (\Throwable $e) {
         return false;
     }
 }
