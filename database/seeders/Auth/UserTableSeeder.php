@@ -454,8 +454,11 @@ class UserTableSeeder extends Seeder
             Storage::makeDirectory('public/avatars');
         }
 
-        Avatar::create($name)->save(storage_path('app/public/' . $filePath));
-
-        return asset('storage/' . $filePath);
+        try {
+            Avatar::create($name)->save(storage_path('app/public/' . $filePath));
+            return asset('storage/' . $filePath);
+        } catch (\Throwable $e) {
+            return null; // Fallback so migration continues
+        }
     }
 }
