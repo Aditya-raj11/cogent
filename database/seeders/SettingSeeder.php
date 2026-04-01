@@ -858,7 +858,7 @@ class SettingSeeder extends Seeder
             array (
                 'id' => 59,
                 'name' => 'google_redirect_uri',
-                'val' => 'http://127.0.0.1:8000/auth/google/callback',
+                'val' => 'https://cogent-bir9.onrender.com/auth/google/callback',
                 'type' => 'appconfig',
                 'datatype' => NULL,
                 'created_by' => 2,

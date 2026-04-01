@@ -185,6 +185,14 @@ class MobileSettingsTableSeeder extends Seeder
 
         \DB::table('mobile_settings')->delete();
 
+        $movieIds = \DB::table('entertainments')->where('type', 'movie')->pluck('id')->toArray();
+        $tvShowIds = \DB::table('entertainments')->where('type', 'tvshow')->pluck('id')->toArray();
+        $videoIds = \DB::table('videos')->pluck('id')->toArray();
+        $genreIds = \DB::table('genres')->pluck('id')->toArray();
+        $castIds = \DB::table('cast_crews')->pluck('id')->toArray();
+        $channelIds = \DB::table('live_tv_channels')->pluck('id')->toArray();
+        $languageIds = \DB::table('constants')->where('type', 'movie_language')->pluck('id')->toArray();
+
         \DB::table('mobile_settings')->insert(array (
             0 =>
             array (
@@ -193,8 +201,8 @@ class MobileSettingsTableSeeder extends Seeder
                 'slug' => 'banner',
                 'position' => 1,
                 'value' => '1',
-                'created_at' => '2024-07-12 10:28:06',
-                'updated_at' => '2024-07-12 10:28:06',
+                'created_at' => now(),
+                'updated_at' => now(),
                 'deleted_at' => NULL,
             ),
             1 =>
@@ -204,8 +212,8 @@ class MobileSettingsTableSeeder extends Seeder
                 'slug' => 'continue-watching',
                 'position' => 2,
                 'value' => '1',
-                'created_at' => '2024-07-12 10:28:21',
-                'updated_at' => '2024-07-12 10:28:21',
+                'created_at' => now(),
+                'updated_at' => now(),
                 'deleted_at' => NULL,
             ),
             2 =>
@@ -214,9 +222,9 @@ class MobileSettingsTableSeeder extends Seeder
                 'name' => 'Top 10',
                 'slug' => 'top-10',
                 'position' => 3,
-                'value' => '["35","69","22","49","76","89","94","95","99","102"]',
-                'created_at' => '2024-07-12 10:28:33',
-                'updated_at' => '2024-07-12 10:43:17',
+                'value' => json_encode(array_slice($movieIds, 0, 10)),
+                'created_at' => now(),
+                'updated_at' => now(),
                 'deleted_at' => NULL,
             ),
             3 =>
@@ -226,8 +234,8 @@ class MobileSettingsTableSeeder extends Seeder
                 'slug' => 'advertisement',
                 'position' => 4,
                 'value' => '1',
-                'created_at' => '2024-07-12 10:28:47',
-                'updated_at' => '2024-07-12 10:28:47',
+                'created_at' => now(),
+                'updated_at' => now(),
                 'deleted_at' => NULL,
             ),
             4 =>
@@ -236,9 +244,9 @@ class MobileSettingsTableSeeder extends Seeder
                 'name' => 'Latest Movies',
                 'slug' => 'latest-movies',
                 'position' => 5,
-                'value' => '["103","97","102","95","96","100","98","94"]',
-                'created_at' => '2024-07-12 10:29:02',
-                'updated_at' => '2024-07-12 10:44:11',
+                'value' => json_encode(array_slice($movieIds, 0, 8)),
+                'created_at' => now(),
+                'updated_at' => now(),
                 'deleted_at' => NULL,
             ),
             5 =>
@@ -247,9 +255,9 @@ class MobileSettingsTableSeeder extends Seeder
                 'name' => 'Popular language',
                 'slug' => 'enjoy-in-your-native-tongue',
                 'position' => 6,
-                'value' => '["16","17","18","19","20" ,"21","22","23"]',
-                'created_at' => '2024-07-12 10:29:20',
-                'updated_at' => '2024-07-12 10:33:08',
+                'value' => json_encode(array_slice($languageIds, 0, 8)),
+                'created_at' => now(),
+                'updated_at' => now(),
                 'deleted_at' => NULL,
             ),
             6 =>
@@ -258,9 +266,9 @@ class MobileSettingsTableSeeder extends Seeder
                 'name' => 'Popular Movies',
                 'slug' => 'popular-movies',
                 'position' => 7,
-                'value' => '["22","25","26","28","29","31","34","36","37","40","38"]',
-                'created_at' => '2024-07-12 10:29:36',
-                'updated_at' => '2024-07-12 10:48:33',
+                'value' => json_encode(array_slice($movieIds, 0, 11)),
+                'created_at' => now(),
+                'updated_at' => now(),
                 'deleted_at' => NULL,
             ),
             7 =>
@@ -269,9 +277,9 @@ class MobileSettingsTableSeeder extends Seeder
                 'name' => 'Top Channels',
                 'slug' => 'top-channels',
                 'position' => 8,
-                'value' => '["1","2","3","4","5","6","7","8","9","10"]',
-                'created_at' => '2024-07-12 10:30:54',
-                'updated_at' => '2024-07-12 10:30:54',
+                'value' => json_encode(array_slice($channelIds, 0, 10)),
+                'created_at' => now(),
+                'updated_at' => now(),
                 'deleted_at' => NULL,
             ),
             8 =>
@@ -280,9 +288,9 @@ class MobileSettingsTableSeeder extends Seeder
                 'name' => 'Popular Personalities',
                 'slug' => 'your-favorite-personality',
                 'position' => 9,
-                'value' => '["1","2","3","4","5","6","7","8","9","10"]',
-                'created_at' => '2024-07-12 10:31:08',
-                'updated_at' => '2024-07-12 10:47:13',
+                'value' => json_encode(array_slice($castIds, 0, 10)),
+                'created_at' => now(),
+                'updated_at' => now(),
                 'deleted_at' => NULL,
             ),
             9 =>
@@ -291,9 +299,9 @@ class MobileSettingsTableSeeder extends Seeder
                 'name' => 'Free Movies',
                 'slug' => '500-free-movies',
                 'position' => 10,
-                'value' => '["21","23","24","25","30","31","32","34","33","35"]',
-                'created_at' => '2024-07-12 10:31:38',
-                'updated_at' => '2024-07-12 10:47:34',
+                'value' => json_encode(array_slice($movieIds, 0, 10)),
+                'created_at' => now(),
+                'updated_at' => now(),
                 'deleted_at' => NULL,
             ),
             10 =>
@@ -302,9 +310,9 @@ class MobileSettingsTableSeeder extends Seeder
                 'name' => 'Genres',
                 'slug' => 'genre',
                 'position' => 11,
-                'value' => '["1","2","3","4","5","6","7","8"]',
-                'created_at' => '2024-07-12 10:31:52',
-                'updated_at' => '2024-07-12 10:49:42',
+                'value' => json_encode(array_slice($genreIds, 0, 8)),
+                'created_at' => now(),
+                'updated_at' => now(),
                 'deleted_at' => NULL,
             ),
             11 =>
@@ -314,8 +322,8 @@ class MobileSettingsTableSeeder extends Seeder
                 'slug' => 'rate-our-app',
                 'position' => 12,
                 'value' => '1',
-                'created_at' => '2024-07-12 10:32:08',
-                'updated_at' => '2024-07-12 10:32:08',
+                'created_at' => now(),
+                'updated_at' => now(),
                 'deleted_at' => NULL,
             ),
             12 =>
@@ -324,9 +332,9 @@ class MobileSettingsTableSeeder extends Seeder
                 'name' => 'Popular TV Show',
                 'slug' => 'popular-tvshows',
                 'position' => 13,
-                'value' => '[4,6,1,2,3,8,10,12]',
-                'created_at' => '2024-07-12 10:29:36',
-                'updated_at' => '2024-07-12 10:48:33',
+                'value' => json_encode(array_slice($tvShowIds, 0, 8)),
+                'created_at' => now(),
+                'updated_at' => now(),
                 'deleted_at' => NULL,
             ),
             13 =>
@@ -335,9 +343,9 @@ class MobileSettingsTableSeeder extends Seeder
                 'name' => 'Popular Videos',
                 'slug' => 'popular-videos',
                 'position' => 14,
-                'value' => '["1","2","3","4","5","12","14","15","17","18","19","20","25","35"]',
-                'created_at' => '2024-07-12 10:29:36',
-                'updated_at' => '2024-07-12 10:48:33',
+                'value' => json_encode(array_slice($videoIds, 0, 10)),
+                'created_at' => now(),
+                'updated_at' => now(),
                 'deleted_at' => NULL,
             ),
         ));
