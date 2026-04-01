@@ -46,9 +46,8 @@ RUN php artisan cache:clear
 RUN php artisan view:clear
 RUN php artisan storage:link || true
 
-# We expose the PORT dynamically from Render. Render passes this env natively.
-ENV PORT=10000
-EXPOSE ${PORT}
+# Render passes the PORT env natively. We default to 10000 if not present.
+EXPOSE 10000
 
 # Run the server
 CMD php -S 0.0.0.0:${PORT:-10000} -t public
